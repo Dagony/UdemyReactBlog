@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import Post from '../../components/Post/Post';
 import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
-import './Blog.css';
-// import axios from "axios";
+import classes from './Blog.css';
+
 import axios from '../../axios';
 
 class Blog extends Component {
@@ -16,7 +16,7 @@ class Blog extends Component {
     };
 
     componentDidMount() {
-        const posts = axios.get('/posts')
+        axios.get('/posts')
             .then(response => {
                 const posts = response.data.slice(0,4);
                 const updatedPosts = posts.map(post => {
@@ -50,7 +50,15 @@ class Blog extends Component {
         }
 
         return (
-            <div>
+            <div className="Blog">
+                <header>
+                    <nav>
+                        <ul>
+                            <li><a href={"/"}>Home</a></li>
+                            <li><a href={"/new-post"}>New Post</a></li>
+                        </ul>
+                    </nav>
+                </header>
                 <section className="Posts">
                     {posts}
                 </section>
